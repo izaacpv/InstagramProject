@@ -1,0 +1,29 @@
+.main-container {
+  display: grid;
+  margin: 0;
+  padding: 0;
+
+  @include for-narrow-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 95vh 5vh;
+    grid-template-areas: "i" "nb";
+  }
+  @include for-normal-layout {
+    grid-template-columns: 60px 1fr;
+    overflow: hidden;
+    grid-template-rows: 100vh;
+    grid-template-areas: "nb i";
+  }
+  @include for-wide-layout {
+    grid-template-columns: 230px 1fr;
+    grid-template-rows: 100vh;
+    overflow: hidden;
+    grid-template-areas: "nb i";
+  }
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
