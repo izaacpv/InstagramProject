@@ -129,7 +129,7 @@ function getEmptyStory() {
 function _createStory(description, comments, likedBy, tags) {
   return {
     _id: "s-" + utilService.makeId(),
-    by: userService.getLoggedinUser(),
+    by: getLoggedinUser(),
     imgUrl: "some-url",
     description,
     comments,
@@ -163,7 +163,7 @@ function _createStorys() {
   if (!storys) {
     storys = [];
     for (let i = 0; i < 5; i++) {
-      storys.push(_createStory("blablabla",_createComments(), [getLoggedinUser()], ['#test', "#test2"]));
+      storys.push(_createStory("blablabla",_createComments(), ['#test', "#test2"], ['#test', "#test2"]));
     }
   }
 

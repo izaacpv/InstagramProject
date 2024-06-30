@@ -1,4 +1,39 @@
 .app-nav-bar {
   background-color: black;
   grid-area: nb;
+
+  .app-nav-bar-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .list-item {
+      
+    }
+
+    @include for-narrow-layout {
+      display: flex;
+      flex-direction: row;
+      text-decoration: line-through;
+
+      span {
+        display: none;
+      }
+    }
+    @include for-normal-layout {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      span {
+        display: none;
+      }
+    }
+    @include for-wide-layout {
+      display: flex;
+      flex-direction: column;
+      span {
+        display: inline;
+      }
+    }
+  }
 }
