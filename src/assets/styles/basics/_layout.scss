@@ -3,11 +3,10 @@
   margin: 0;
   padding: 0;
 
-  @include for-narrow-layout {
-    grid-template-columns: 1fr;
-    grid-template-rows: 93vh 7vh;
-    grid-template-areas: "i" "nb";
-  }
+  grid-template-columns: 1fr;
+  grid-template-rows: 93vh 7vh;
+  grid-template-areas: "i" "nb";
+
   @include for-normal-layout {
     grid-template-columns: 60px 1fr;
     overflow: hidden;

@@ -1,38 +1,62 @@
 .app-nav-bar {
-  background-color: black;
   grid-area: nb;
+  border-right: 1px lightgray solid;
+  display: flex;
+  flex-direction: row;
+
+  .nav-bar-logo-txt {
+    height: 30px;
+    margin: 30px 10px;
+    display: none;
+  }
+
+  .nav-bar-logo {
+    height: 30px;
+    margin: 30px 10px;
+  }
+
+  span {
+    display: none;
+  }
 
   .app-nav-bar-items {
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    flex-direction: row;
 
-    .list-item {
-      
-    }
 
     @include for-narrow-layout {
       display: flex;
       flex-direction: row;
-      text-decoration: line-through;
-
-      span {
+      .nav-bar-logo-txt {
+        display: none;
+      }
+      .nav-bar-logo {
         display: none;
       }
     }
+
     @include for-normal-layout {
       display: flex;
       flex-direction: column;
-      text-decoration: none;
-      span {
-        display: none;
+      .nav-bar-logo {
+        display: inline;
       }
     }
+
     @include for-wide-layout {
       display: flex;
       flex-direction: column;
       span {
         display: inline;
+      }
+      .nav-bar-logo-txt {
+        display: inline;
+      }
+      .nav-bar-logo {
+        display: none;
       }
     }
   }

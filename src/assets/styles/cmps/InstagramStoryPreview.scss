@@ -1,0 +1,41 @@
+.story-preview {
+  padding: 0;
+  display: grid;
+  max-width: 485px;
+  grid-template-columns: minmax(auto, 485px);
+  grid-template-rows: 46px auto 144px;
+
+  img {
+    max-height: 585px;
+    border-radius: 10px;
+    border: 1px lightgray solid;
+  }
+
+  .story-preview-description {
+    display: flex;
+    align-items: baseline;
+
+    h1 {
+      margin-right: 5px;
+    }
+  }
+
+  .story-preview-actions {
+    display: flex;
+    align-items: center;
+    height: 40px;
+  }
+
+  .story-preview-header {
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .story-preview-add-comment {
+    input {
+      border: none;
+      outline: none;
+    }
+  }
+}

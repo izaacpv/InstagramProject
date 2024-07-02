@@ -1,4 +1,10 @@
 .instagram-app {
   grid-area: i;
   overflow: auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 630px) 1fr;
+
+  @include for-wide-layout {
+    grid-template-columns: 1fr minmax(auto, 630px) 383px 1fr
+  }
 }

@@ -1,9 +1,13 @@
 import { InstagramStoryPreview } from "./InstagramStoryPreview";
 
-export function InstagramStoryList({storys}) {
+export function InstagramStoryList({ storys }) {
   return (
     <section className="app-story-list">
-      {storys.map(story => <InstagramStoryPreview story={story} key={story.id}/>)}
+      {storys.map((story) => (
+        <div className="app-story-list-item" key={story.id}>
+          <InstagramStoryPreview story={story} key={story.id} />
+        </div>
+      ))}
     </section>
-  )
+  );
 }
