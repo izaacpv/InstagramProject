@@ -8,7 +8,6 @@ export function InstagramIndex() {
   
   useEffect(() => {
     loadStorys();
-    console.log('storys: ', storys);
   }, [])
 
   if (!storys) return <div>Loading...</div>

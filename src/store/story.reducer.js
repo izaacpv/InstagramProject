@@ -26,9 +26,11 @@ export function storyReducer(state = initialState, cmd) {
         story: cmd.story
       }
     case REMOVE_STORY:
+      console.log(cmd.storyId);
+      console.log(state.storys.filter((story) => story._id !== cmd.storyId));
       return {
         ...state,
-        storys: state.storys.filter((story) => story.id !== cmd.storyId),
+        storys: state.storys.filter((story) => story._id !== cmd.storyId),
         lastRobots: [...state.storys],
       };
     case ADD_STORY:
@@ -37,10 +39,11 @@ export function storyReducer(state = initialState, cmd) {
         storys: [...state.storys, cmd.story],
       };
     case UPDATE_STORY:
+      console.log(cmd.story)
       return {
         ...state,
         storys: state.storys.map((story) =>
-          story.id === cmd.story.id ? cmd.story : story
+          story._id === cmd.story._id ? cmd.story : story
         ),
       };
     case SET_FILTER:

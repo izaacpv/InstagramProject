@@ -26,8 +26,8 @@ export async function loadStory(storyId) {
 
 export async function removeStory(storyId) {
     try {
-        await storyService.remove(storyId)
         store.dispatch(getCmdRemoveStory(storyId))
+        await storyService.remove(storyId)
     } catch (err) {
         console.log('Cannot remove story', err)
         throw err
@@ -58,10 +58,11 @@ export async function updateStory(story) {
     }
 }
 
-export async function addStoryComment(story, txt) {
+export async function addStoryComment(story, comment) {
     try {
-        const newStory = await storyService.addStoryComment(story, txt)
-        console.log('Added Story message', txt)
+        const newStory = await storyService.addStoryComment(story, comment)
+        console.log('story: ', story);
+        console.log('Added Story message', comment)
         store.dispatch(getCmdUpdateStory(newStory))
         return newStory
     } catch (err) {
@@ -84,6 +85,7 @@ export async function editStoryComment(story, comment) {
 
 // Command Creators:
 function getCmdRemoveStory(storyId) {
+    console.log(storyId);
     return {
         type: REMOVE_STORY,
         storyId

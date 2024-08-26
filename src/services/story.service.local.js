@@ -17,7 +17,11 @@ export const storyService = {
   addStoryComment,
   removeStoryComment,
   editStoryComment,
-  handleStoryLike
+  handleStoryLike,
+  createStory,
+  _createComments,
+  createComment,
+  createEmptyComment,
 };
 window.cs = storyService;
 
@@ -50,6 +54,8 @@ async function save(story) {
     let storyToSave = getEmptyStory();
 
     storyToSave = {
+      ...storyToSave,
+      by: story.by,
       description: story.description,
       tags: story.tags,
     };
@@ -58,12 +64,10 @@ async function save(story) {
   return savedStory;
 }
 
-async function addStoryComment(story, description) {
-  const comment = getEmptyComment();
+async function addStoryComment(story, comment) {
+  const commentToSave = { ...comment, _id: "c-" + utilService.makeId() };
 
-  comment.description = description;
-
-  story.comments.push(comment);
+  story.comments.push(commentToSave);
   await storageService.put(STORAGE_KEY, story);
 
   return story;
@@ -106,7 +110,6 @@ async function handleStoryLike(storyId) {
 
 function getEmptyComment() {
   return {
-    _id: "c-" + utilService.makeId(),
     by: "",
     imgUrl: "some-url",
     txt: "",
@@ -126,9 +129,8 @@ function getEmptyStory() {
   };
 }
 
-function _createStory(description, comments, likedBy, tags) {
+function createStory(description, comments, likedBy, tags) {
   return {
-    _id: "s-" + utilService.makeId(),
     by: getLoggedinUser(),
     imgUrl: "some-url",
     description,
@@ -138,23 +140,32 @@ function _createStory(description, comments, likedBy, tags) {
   };
 }
 
-function _createComment(txt) {
+function createComment(txt) {
   return {
     _id: "c-" + utilService.makeId(),
-    by: userService.getLoggedinUser(),
+    by: getLoggedinUser(),
     imgUrl: "some-url",
     txt,
     likedBy: [],
   };
 }
 
+function createEmptyComment() {
+  return {
+    by: getLoggedinUser(),
+    imgUrl: "some-url",
+    txt: "",
+    likedBy: [],
+  };
+}
+
 function _createComments() {
-  const comments = []
+  const comments = [];
   for (let i = 0; i < 5; i++) {
-    comments.push(_createComment('lorem ipsum'));
+    comments.push(createComment("lorem ipsum"));
   }
 
-  return comments
+  return comments;
 }
 
 function _createStorys() {
@@ -163,20 +174,29 @@ function _createStorys() {
   if (!storys) {
     storys = [];
     for (let i = 0; i < 5; i++) {
-      storys.push(_createStory("blablabla",_createComments(), ['#test', "#test2"], ['#test', "#test2"]));
+      const story = createStory(
+        "blablabla",
+        _createComments(),
+        ["#test", "#test2"],
+        ["#test", "#test2"]
+      );
+      storys.push({
+        _id: 's-' + utilService.makeId(7),
+        ...story
+      });
     }
   }
 
-  utilService.saveToStorage(STORAGE_KEY, storys)
+  utilService.saveToStorage(STORAGE_KEY, storys);
 
-  return storys
+  return storys;
 }
 
 function getLoggedinUser() {
   return loggedUser;
 }
 
-_createStorys()
+_createStorys();
 
 // TEST DATA
 // storageService.post(STORAGE_KEY, {vendor: 'Subali Rahok 2', price: 980}).then(x => console.log(x))

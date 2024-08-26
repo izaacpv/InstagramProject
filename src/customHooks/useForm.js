@@ -1,26 +1,28 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useEffectUpdate } from "./useEffectUpdate";
 
-export const useForm = (initialState) => {
-    const [fields, setFields] = useState(initialState)
+export function useForm(initialState, cb) {
+  const [fields, setFields] = useState(initialState);
 
-    function handleChange({ target }) {
-        let { value, name: field, type, checked } = target
-        // value = (type === 'number') ? +value : value
-        switch (type) {
-            case 'number':
-            case 'range':
-                value = +value
-                break
-            case 'checkbox':
-                value = checked
+  useEffectUpdate(() => {
+    cb?.(fields);
+  }, [fields]);
 
-            default: break
-        }
-        setFields((prevFields) => ({ ...prevFields, [field]: value }))
+  function handleChange({ target }) {
+    let { name: field, value, type } = target;
+    switch (type) {
+      case "number":
+      case "range":
+        value = +value;
+        break;
+      case "checkbox":
+        value = target.checked;
+        break
+      default:
+        break;
     }
+    setFields((prevFields) => ({ ...prevFields, [field]: value }));
+  }
 
-
-    return [fields, setFields, handleChange]
-
-
+  return [fields, handleChange, setFields];
 }

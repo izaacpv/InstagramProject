@@ -4,6 +4,12 @@
   max-width: 485px;
   grid-template-columns: minmax(auto, 485px);
   grid-template-rows: 46px auto 144px;
+  border-bottom: 1px solid lightgray;
+
+  .story-preview-comments {
+    color: gray;
+    font-size: small;
+  }
 
   img {
     max-height: 585px;
@@ -13,7 +19,9 @@
 
   .story-preview-description {
     display: flex;
-    align-items: baseline;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
 
     h1 {
       margin-right: 5px;
@@ -23,7 +31,17 @@
   .story-preview-actions {
     display: flex;
     align-items: center;
-    height: 40px;
+    gap: 15px;
+    margin-top: 10px;
+    .preview-action {
+      height: 25px;
+      width: 25px;
+
+      &:hover {
+        color: gray;
+        cursor: pointer;
+      }
+    }
   }
 
   .story-preview-header {

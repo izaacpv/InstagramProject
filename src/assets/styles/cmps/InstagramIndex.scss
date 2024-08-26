@@ -5,6 +5,6 @@
   grid-template-columns: 1fr minmax(auto, 630px) 1fr;
 
   @include for-wide-layout {
-    grid-template-columns: 1fr minmax(auto, 630px) 383px 1fr
+    grid-template-columns: 1fr minmax(auto, 630px) minmax(auto, 383px) 1fr
   }
 }

@@ -8,12 +8,12 @@
   grid-template-areas: "i" "nb";
 
   @include for-normal-layout {
-    grid-template-columns: 60px 1fr;
+    grid-template-columns: 80px 1fr;
     overflow: hidden;
     grid-template-rows: 100vh;
     grid-template-areas: "nb i";
   }
-  @include for-wide-layout {
+  @include for-wider-layout {
     grid-template-columns: 230px 1fr;
     grid-template-rows: 100vh;
     overflow: hidden;
